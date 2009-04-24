@@ -93,7 +93,7 @@ def putfile(filename, contents, filelike=None, mode=None):
     filelike.write(contents)
     filelike.close()
     
-class DirPath(str, object):
+class DirPath(str):
     """
     A directory path.
     
@@ -103,8 +103,7 @@ class DirPath(str, object):
     applications (conflicts with ``str.split()``).
     
     """
-    def __init__(self, path):
-        str.__init__(self, path)
+    ## note: str.__init__() cannot be called due to builtin weirdness (warning in 2.6+)
         
     def __setattr__(self, name, val):
         """self.new_directory = "rel/path/to/directory" 
